@@ -36,15 +36,9 @@ var results = document.getElementById("results-container");
 // submitBtn.addEventListener("click", getTripAdvisor());
 
 function getSpoonacular() {
-    // For New Orleans, LA: 
     var requestURL = "https://api.spoonacular.com/recipes/716429/information?apiKey=74473ad991184d2d8122a3c993689b87&includeNutrition=true.";
         console.log(requestURL);
-   
-    // I tried the below for the fetch request, but it didn't work either.
-    // fetch(requestURL, {
-    //     mode: "no-cors",
-    // })
-
+        
     fetch(requestURL)
         .then(function (response) {
             return response.json();
