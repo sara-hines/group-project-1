@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Travel Planning Search Tool: Accomomodations and Safety Data</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <div class="header-container">
+            <header id="heading">Travel Planning Search Tool: Accomomodations and Safety Data</header>
+        </div>
+        <div class="container">
+            <form>
+                <div class="select-container">
+                    <label for="accomodations">Select Type of Accomodation</label>
+                    <select id="accomodations" name="accomodations-options" multiple>
+                        <option value="Hotels">Hotels</option>
+                        <option value="Airbnbs">Airbnbs</option>
+                        <option value="Apartments">Apartments</option>
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="safety-data">Select Type of Safety Statistic</label>
+                    <select id="safety-data" name="safety-data-options" multiple>
+                        <option value="Crime stat 1">Crime Stat 1</option>
+                        <option value="Crime stat 2">Crime stat 2</option>
+                        <option value="Crime stat 3">Crime stat 3</option>
+                    </select>
+                </div>
+                <div class="btn-container">
+                    <button id="submit-btn">See Options and Safety Data</button>
+                </div>
+                <div id="results-container">
+                    <div></div>
+                </div>
+            </form>
+        </div>
+        <script src="script.js"></script>
+    </body>
+
+</html>
+            
