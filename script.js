@@ -1,119 +1,156 @@
 var submitBtn = document.getElementById("submit-btn");
-console.log(submitBtn);
 var results = document.getElementById("results-container");
+var breweryArvada = document.getElementById("brewery-arvada");
+var breweryLakewood = document.getElementById("brewery-lakewood");
+var breweryDenver = document.getElementById("brewery-denver");
+var brewerySelectEl = document.getElementById("brewery-cities");
+var breweryCities = document.querySelectorAll(".brewery-city");
 
-// // function getTripAdvisor() {
-// //     // For New Orleans, LA: 
-// //     var requestURL = "http://api.tripadvisor.com/api/partner/2.0/location/60864?key=BF9FE0AB499947D4BD6BA603F53D7847";
-// //         console.log(requestURL);
-   
-// //     // I tried the below for the fetch request, but it didn't work either.
-// //     // fetch(requestURL, {
-// //     //     mode: "no-cors",
-// //     // })
 
-// //     fetch(requestURL)
-// //         .then(function (response) {
-// //             return response.json();
-// //         })
-// //         .then(function (data) {
-// //             console.log(data)
-// //             var table = document.createElement("table");
-// //             var tableRow = document.createElement("tr");
-// //             var tableData = document.createElement("td");
-// //             var link = document.createElement("a");
+brewerySelectEl.addEventListener("click", function(event) {
+    var breweryCity = event.target;
+    // When user clicks a brewery city, it will appear selected until they click on a different brewery city. If they want to select multiple brewery cities, due to the functionality of the html option element, they will have to control + click to add an additional city past the first one. Current bug would be that if user clicks on a different brewery city after their first brewery city, it will appear to the user that their first brewery city has been un-selected, but in our code, it would still have the data-selected attribute value of selected.
+    breweryCity.setAttribute("data-selected", "selected");
+});
 
-// //             link.textContent = data.html_url;
-// //             link.href = data.html_url;
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    getBreweries();
+});
 
-// //             results.appendChild(table);
-// //             table.appendChild(tableRow);
-// //             tableRow.appendChild(tableData)
-// //             tableData.appendChild(link);
-// //         });
-// // }
+var selectedBreweryCities = [];
+function getBreweries() {
+    for (i = 0; i < 3; i++) {
+        console.log("function getBreweries was triggered!");
+        var state = brewerySelectEl.children[i].getAttribute("data-selected");
+        if (state === "selected") {
+            selectedBreweryCities.push(brewerySelectEl.children[i]);
+        }
+        console.log(selectedBreweryCities);
+    }
+    for (i = 0; i < selectedBreweryCities.length; i++) {
+        if (selectedBreweryCities[i] == breweryArvada) {
+            getBreweryArvada();
+        } else if (selectedBreweryCities[i] == breweryLakewood) {
+            getBreweryLakewood();
+        } else if (selectedBreweryCities[i] == breweryDenver) {
+            getBreweryDenver();
+        } else {
+            return;
+        }
+    }
+}
 
-// submitBtn.addEventListener("click", getTripAdvisor());
+function getBreweryArvada() {
+    var requestURL = "https://api.openbrewerydb.org/v1/breweries?by_city=Arvada";
+        // console.log(requestURL);
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var breweryArvadaData = data;
+            localStorage.setItem("breweryArvadaStored", JSON.stringify(breweryArvadaData));
+            var retrievedBreweryArvada = JSON.parse(localStorage.getItem("breweryArvadaStored"));
+            console.log(retrievedBreweryArvada);
+            for (i = 0; i < retrievedBreweryArvada.length; i++) {
+                var li = document.createElement("li");
+                li.textContent = retrievedBreweryArvada[i].name + ":  " + retrievedBreweryArvada[i].address_1;
+                var ul = document.querySelector("ul.results");
+                ul.appendChild(li);
+            }
+        });
+}
 
-// function getSpoonacular() {
-//     var requestURL = "https://api.spoonacular.com/recipes/716429/information?apiKey=74473ad991184d2d8122a3c993689b87&includeNutrition=true.";
-//         console.log(requestURL);
+function getBreweryLakewood() {
+    var requestURL = "https://api.openbrewerydb.org/v1/breweries?by_city=Lakewood";
+        // console.log(requestURL);
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var breweryLakewoodData = data;
+            localStorage.setItem("breweryLakewoodStored", JSON.stringify(breweryLakewoodData));
+            var retrievedBreweryLakewood = JSON.parse(localStorage.getItem("breweryLakewoodStored"));
+            console.log(retrievedBreweryLakewood);
+            for (i = 0; i < retrievedBreweryLakewood.length; i++) {
+                var li = document.createElement("li");
+                li.textContent = retrievedBreweryLakewood[i].name + ":  " + retrievedBreweryLakewood[i].address_1;
+                var ul = document.querySelector("ul.results");
+                ul.appendChild(li);
+            }
+        });
+}
 
+function getBreweryDenver() {
+    var requestURL = "https://api.openbrewerydb.org/v1/breweries?by_city=Denver";
+        // console.log(requestURL);
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var breweryDenverData = data;
+            localStorage.setItem("breweryDenverStored", JSON.stringify(breweryDenverData));
+            var retrievedBreweryDenver = JSON.parse(localStorage.getItem("breweryDenverStored"));
+            console.log(retrievedBreweryDenver);
+            for (i = 0; i < retrievedBreweryDenver.length; i++) {
+                var li = document.createElement("li");
+                li.textContent = retrievedBreweryDenver[i].name + ":  " + retrievedBreweryDenver[i].address_1;
+                var ul = document.querySelector("ul.results");
+                ul.appendChild(li);
+            }
+        });
+}
+
+// // Music events in Denver 
+// function getTicketMasterDenver() {
+//     var requestURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=264&apikey=ZNzKLs0LgFjnzr7MbEoFJueWt1j24tfW";
+//         // console.log(requestURL);
 //     fetch(requestURL)
 //         .then(function (response) {
 //             return response.json();
 //         })
 //         .then(function (data) {
 //             console.log(data)
-//             var ulEl = document.createElement("ul");
-//             var liEL = document.createElement("li");
-//             liEL.textContent = data.vegetarian;
-//             results.appendChild(ulEl);
-//             ulEl.appendChild(liEl);
 //             }
 //         );
 // }
 
-// submitBtn.addEventListener("click", getSpoonacular());
+// submitBtn.addEventListener("click", getTicketMasterDenver());
 
-// var settings = {
-//     "async": true,
-//     "crossDomain": true,
-//     "url": "https://api.kroger.com/v1/connect/oauth2/token",
-//     "method": "POST",
-//     "headers": {
-//         "Access-Control-Allow-Origin": "*",
-//         "mode": "no-cors",
-//       "Content-Type": "application/x-www-form-urlencoded",
-//       "Authorization":"BASIC groupproject1-ae4226c20cfc153c7ddfc238c916cb5c9078793211480511866=jYs0TaqmpyGWNcvjOjpifeuE7ANoMSNm5mPgqf1W"
-//     },
-//     "data": {
-//       "grant_type": "client_credentials",
-//       "scope": "product.compact"
-//     }
-//   }
-  
-//   $.ajax(settings).done(function (response) {
-//     console.log(response);
 
-    // var settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://api.kroger.com/v1/products?filter.brand={{BRAND}}&filter.term={{TERM}}&filter.locationId={{LOCATION_ID}}",
-    //     "method": "GET",
-    //     "headers": {
-    //       "Accept": "application/json",
-    //       "Authorization": "Bearer {{TOKEN}}"
-    //     }
-    //   }
-      
-    //   $.ajax(settings).done(function (response) {
-    //     console.log(response);
-    //   });
-      
-//   });
-  
+// // Music events in Aurora, sorted by date from soonest to furthest out in future
+// function getTicketMasterAurora() {
+//     var requestURL = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=Aurora&sort=date,asc&apikey=ZNzKLs0LgFjnzr7MbEoFJueWt1j24tfW";
+//         // console.log(requestURL);
+//     fetch(requestURL)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data)
+//             }
+//         );
+// }
 
-function getSimpleGroceryStore() {
-    var requestURL = "https://api.openbrewerydb.org/v1/breweries";
-        console.log(requestURL);
+// submitBtn.addEventListener("click", getTicketMasterAurora());
 
-    fetch(requestURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data)
-            // var ulEl = document.createElement("ul");
-            // var liEL = document.createElement("li");
-            // liEL.textContent = data;
-            // results.appendChild(ulEl);
-            // ulEl.appendChild(liEl);
-            }
-        );
-}
+// function getEventbrite() {
+//     var requestURL = "https://www.eventbriteapi.com/v3/subcategories/3001/?token=EAVHHX5PQPPI6TJ4XLP2";
+//         console.log(requestURL);
+//     fetch(requestURL)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data)
+//             }
+//         );
+// }
 
-submitBtn.addEventListener("click", getSimpleGroceryStore());
+// submitBtn.addEventListener("click", getEventbrite());
 
 
 
