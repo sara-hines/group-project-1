@@ -25,16 +25,19 @@
                 <div class="select-container">
                     <label for="event-cities">Select City to Search for Events</label>
                     <select id="event-cities" name="event-cities" multiple>
-                        <option value="Arvada">Arvada</option>
-                        <option value="Lakewood">Lakewood</option>
-                        <option value="Denver">Denver</option>
+                        <option value="Denver" class="event-city" id="event-denver" data-selected="unselected">Denver</option>
+                        <option value="Aurora" class="event-city" id="event-aurora" data-selected="unselected">Aurora</option>
+                        <option value="Boulder" class="event-city" id="event-boulder" data-selected="unselected">Boulder</option>
                     </select>
                 </div>
                 <div class="btn-container">
                     <button id="submit-btn">See Breweries and Events</button>
                 </div>
                 <div id="results-container">
-                    <ul class="results"></ul>
+                    <h2>Breweries</h2>
+                    <ul class="brewery-results"></ul>
+                    <h2>Events</h2>
+                    <ul class="event-results"></ul>
                 </div>
             </form>
         </div>
