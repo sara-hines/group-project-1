@@ -5,42 +5,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Brewery and Concert Search Tool</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     </head>
 
     <body>
-        <div class="header-container">
-            <header id="heading">Denver Metro Brewery and Concert-Hop!</header>
-        </div>
-        <div class="container">
-            <form>
-                <div class="select-container">
-                    <label for="brewery-cities">Select City to Search for Breweries</label>
-                    <select id="brewery-cities" name="brewery-cities" multiple>
-                        <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
-                        <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>
-                        <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
-                    </select>
+        <div class="has-text-centered">
+            <div class="mt-2">
+                <header class="is-bold is-size-1">Denver Metro Brewery and Concert-Hop!</header>
+            </div>
+
+            <div class="columns is-centered mt-2">
+                <div class="has-background-info-light">
+                    <div class="column">
+                        <form>
+                            <label for="brewery-cities">Select City to Search for Breweries</label>
+                            <div class="select">
+                                <select id="brewery-cities" name="brewery-cities" multiple>
+                                    <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
+                                    <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>
+                                    <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="column">
+                        <form>
+                            <label for="event-cities">Select City to Search for Events</label>
+                            <div class="select">
+                                <select id="event-cities" name="event-cities" multiple>
+                                    <option value="Arvada">Arvada</option>
+                                    <option value="Lakewood">Lakewood</option>
+                                    <option value="Denver">Denver</option>
+                                </select>
+                            </div>
+                            <div class="mt-2">
+                                <button id="submit-btn">See Breweries and Events</button>
+                            </div>
+                            <div id="results-container">
+                                <div></div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="select-container">
-                    <label for="event-cities">Select City to Search for Events</label>
-                    <select id="event-cities" name="event-cities" multiple>
-                        <option value="Arvada">Arvada</option>
-                        <option value="Lakewood">Lakewood</option>
-                        <option value="Denver">Denver</option>
-                    </select>
-                </div>
-                <div class="btn-container">
-                    <button id="submit-btn">See Breweries and Events</button>
-                </div>
-                <div id="results-container">
-                    <ul class="results"></ul>
-                </div>
-            </form>
-        </div>
+            </div>
+        <!-- I added the below div closing tag since it seemed to be needed, but I'm not sure I interpreted Austin's bulma styled html correctly -->
+        </div>   
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="script.js"></script>
     </body>
-
 </html>
             
