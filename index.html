@@ -5,42 +5,106 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Brewery and Concert Search Tool</title>
-        <link rel="stylesheet" href="/group-project-1/assets/css/style.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" type="text/css" href="/group-project-1/assets/css/style.css">
+        <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"
+      ></script>
     </head>
 
     <body>
-        <div class="header-container">
+        <div class="header-container is-bold is-size-1 has-text-centered mt-3 mb-3" >
             <header id="heading">Denver Metro Brewery and Concert-Hop!</header>
         </div>
-        <div class="container">
-            <form>
-                <div class="select-container">
-                    <label for="brewery-cities">Select City to Search for Breweries</label>
-                    <select id="brewery-cities" name="brewery-cities" multiple>
-                        <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
-                        <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>
-                        <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
-                    </select>
+
+        <div class="columns has-background-info-light">
+                <div class="column has-background-info-light is-half">
+                    <form>
+                        <div class="has-text-centered mb-3">
+                            <label for="brewery-cities">Select City to Search for Breweries</label>
+                        </div>
+                        <div class="select-container">
+                            <select id="brewery-cities" class="is-centered select-el" name="brewery-cities" multiple>
+                                <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
+                                <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>
+                                <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
+                            </select>
+                        </div>
+                        <div class="modal-link-container has-text-centered">
+                            <a id="brewery-modal-link" class="is-link modal-link">Learn more about brewery types</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="select-container">
-                    <label for="event-cities">Select City to Search for Events</label>
-                    <select id="event-cities" name="event-cities" multiple>
-                        <option value="Denver" class="event-city" id="event-denver" data-selected="unselected">Denver</option>
-                        <option value="Aurora" class="event-city" id="event-aurora" data-selected="unselected">Aurora</option>
-                        <option value="Boulder" class="event-city" id="event-boulder" data-selected="unselected">Boulder</option>
-                    </select>
+
+                <div class="column has-background-info-light is-half">
+                    <form>
+                        <div class="has-text-centered mb-3">
+                            <label for="event-cities">Select City to Search for Events</label>
+                        </div>
+                        <div class="select-container">
+                            <select id="event-cities" class="is-centered select-el" name="event-cities" multiple>
+                                <option value="Denver" class="event-city" id="event-denver" data-selected="unselected">Denver</option>
+                                <option value="Aurora" class="event-city" id="event-aurora" data-selected="unselected">Aurora</option>
+                                <option value="Boulder" class="event-city" id="event-boulder" data-selected="unselected">Boulder</option>
+                            </select>
+                        </div>
+                        <div class="modal-link-container has-text-centered">
+                            <a id="event-modal-link" class="is-link modal-link">Learn more about Denver Metro Concert and Event Venues</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="btn-container">
-                    <button id="submit-btn">See Breweries and Events</button>
-                </div>
-                <div id="results-container">
-                    <h2>Breweries</h2>
-                    <ul class="brewery-results"></ul>
-                    <h2>Events</h2>
-                    <ul class="event-results"></ul>
-                </div>
-            </form>
         </div>
+        <div class="btn-container">
+            <div class="has-background-info-light has-text-centered mt-3">
+                <button id="submit-btn" class="button">See Breweries and Events</button>
+            </div>
+        </div>
+        <div id="results-container" class="has-background-info-light has-text-centered mt-3">
+            <h2>Breweries</h2>
+            <ul class="brewery-results"></ul>
+            <h2>Events</h2>
+            <ul class="event-results"></ul>
+        </div>
+
+        <div class="modal" id="brewery-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Modal title</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <!-- <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button> -->
+                </footer>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+        <div class="modal" id="event-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Modal title</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <!-- <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button> -->
+                </footer>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+        
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="/group-project-1/assets/js/script.js"></script>
     </body>
