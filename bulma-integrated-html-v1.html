@@ -9,20 +9,24 @@
     </head>
 
     <body>
-        <div class="has-text-centered">
-            <div class="mt-2">
-                <header class="is-bold is-size-1">Denver Metro Brewery and Concert-Hop!</header>
-            </div>
+        <header class="is-bold is-size-1 has-text-centered mt-3 mb-3" id="heading">Denver Metro Brewery and Concert-Hop!</header>
+
+        <div class="column has-background-info-light is-half">
+            <form>
+                <div class="mb-3">
+
+                
+            
 
             <div class="columns is-centered mt-2">
                 <div class="has-background-info-light">
                     <div class="column">
                         <form>
                             <label for="brewery-cities">Select City to Search for Breweries</label>
-                            <div class="select">
+                            <div class="select select-container">
                                 <select id="brewery-cities" name="brewery-cities" multiple>
                                     <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
-                                    <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>
+                                    <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</select>option>
                                     <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
                                 </select>
                             </div>
@@ -32,18 +36,21 @@
                     <div class="column">
                         <form>
                             <label for="event-cities">Select City to Search for Events</label>
-                            <div class="select">
+                            <div class="select select-container">
                                 <select id="event-cities" name="event-cities" multiple>
-                                    <option value="Arvada">Arvada</option>
-                                    <option value="Lakewood">Lakewood</option>
-                                    <option value="Denver">Denver</option>
+                                    <option value="Denver" class="event-city" id="event-denver" data-selected="unselected">Denver</option>
+                                    <option value="Aurora" class="event-city" id="event-aurora" data-selected="unselected">Aurora</option>
+                                    <option value="Boulder" class="event-city" id="event-boulder" data-selected="unselected">Boulder</option>
                                 </select>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-2 btn-container">
                                 <button id="submit-btn">See Breweries and Events</button>
                             </div>
                             <div id="results-container">
-                                <div></div>
+                                <h2>Breweries</h2>
+                                <ul class="brewery-results"></ul>
+                                <h2>Events</h2>
+                                <ul class="event-results"></ul>
                             </div>
                         </form>
                     </div>
@@ -53,7 +60,7 @@
         </div>   
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="script.js"></script>
+        <script src="/group-project-1/assets/js/script.js"></script>
     </body>
 </html>
             

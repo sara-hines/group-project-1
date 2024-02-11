@@ -1,35 +1,12 @@
-*,
-*::before, 
-*::after {
-    box-sizing: border-box;
-}
-
-body {
-    font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
-    background-color: lightblue;
-}
-
-#heading {
-    font-size: 25px;
-    margin: 10px auto;
-}
-
 .select-container {
-    width: 40%;
-    padding: 20px;
+    margin-left: 40%;
 }
 
-select {
-    min-width: 100%;
+.select-el {
+    width: 30%;
+    min-width: 85px;
 }
 
-.btn-container {
-    width: 40%;
-    padding: 20px;
+.modal-card {
+    top: 30%;
 }
-
-button {
-    min-height: 3em;
-}
-
