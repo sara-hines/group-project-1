@@ -26,6 +26,19 @@
                             <label for="brewery-cities">Select City to Search for Breweries</label>
                         </div>
                         <div class="select-container">
+                            <!-- Below is my attempt to use a bulma dropdown and try to make the javascript for generating results work as well. It looks like any attempt I make to use a bulma dropdown causes errors along the lines of "Cannot read properties of undefined (reading 'getAttribute') at getBreweries (script.js:78:49) at HTMLButtonElement.<anonymous> (script.js:70:5)". The results are not generated when I try to use this bulma dropdown. -->
+                            <!-- <div class="field">
+                                <div class="control mb-6">
+                                    <div class="select">
+                                        <select id="brewery-cities" class="is-dark is-centered" name="brewery-cities">
+                                            <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
+                                            <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</select>option>
+                                            <option value="Denver" class="brewery-city" id="brewery-denver" data-selected="unselected">Denver</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+                        
                             <select id="brewery-cities" class="is-centered select-el" name="brewery-cities" multiple>
                                 <option value="Arvada" class="brewery-city" id="brewery-arvada" data-selected="unselected">Arvada</option>
                                 <option value="Lakewood" class="brewery-city" id="brewery-lakewood" data-selected="unselected">Lakewood</option>

@@ -1,12 +1,56 @@
 .select-container {
-    margin-left: 40%;
+    width: 15vw;
+    min-width: 114px;
 }
 
+/* I added this styling to the select elements so that they're the same width and don't get too narrow when the viewport width is smaller. We can mess with the width values. */
 .select-el {
-    width: 30%;
-    min-width: 85px;
+    width: 90%;
+    text-align: center;
+    min-width: 120px;
 }
 
+/* Helps with the positioning of the modals so they're not too high or low. */
 .modal-card {
-    top: 30%;
+    top: 2.5%
 }
+
+table {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    width: 100%;
+    text-align: left;
+    overflow: visible;
+    /* table-layout: fixed; */
+}
+
+/* The below works, in combination with the above table styling, but the widths of the columns are awkward and the websites overflow the table. */
+/* th, td {
+    min-width: 200px;
+    max-width: 200px;
+} */
+
+.table-sm {
+    width: 200px;
+}
+
+.table-md {
+    width: 200px;
+}
+
+.table-lg {
+    width: 200px;
+}
+
+/* None of the below methods work for controlling width of table columns. */
+/* thead.tr:nth-child(0) {
+    width: 300px;
+} */
+/* .brewery-head-tr:nth-child(0) {
+    width: 100px;
+}  */
+/* th {
+    width: 18%;
+} */
+
