@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Brewery and Concert Search Tool</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/group-project-1/assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik+Maps&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Maps&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <section class="hero is-fullheight">
+        <div class="hero-body has-text-centered">
+            <div class="container">
+                <div class="box has-background-white is-round">
+
+
+                    <div class="rubik-maps-regular">
+                        <div class="header-container is-bold is-size-1 has-text-centered mt-3 mb-3">
+                            <header id="heading">Denver Metro Brewery and Concert-Hop!</header>
+                        </div>
+                    </div>
+
+                    <hr class="hr">
+                    <style>
+                        hr {
+                            border: 2px solid rgba(210, 116, 2, 0.759);
+                        }
+                    </style>
+                    </hr>
+
+                    <div class="lato-bold">
+                        <div class="columns">
+                            <div class="column is-half has-text-centered mb-3">
+
+                                <div class="mb-4">
+                                    <label for="brewery-cities">Select City to Search for Breweries</label>
+                                </div>
+                                <form>
+                                    <div class="select is-multiple mb-3 mt-3 select-container">
+                                        <select id="brewery-cities" class="select-el" name="brewery-cities" multiple>
+                                            <option value="Arvada" class="brewery-city" id="brewery-arvada"
+                                                data-selected="unselected">
+                                                Arvada</option>
+                                            <option value="Lakewood" class="brewery-city" id="brewery-lakewood"
+                                                data-selected="unselected">
+                                                Lakewood</option>
+                                            <option value="Denver" class="brewery-city" id="brewery-denver"
+                                                data-selected="unselected">
+                                                Denver</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="modal-link-container has-text-centered mt-3">
+                                        <a id="brewery-modal-link" class="is-link modal-link">Learn more about brewery
+                                            types</a>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                            <div class="column is-half has-text-centered mb-3">
+
+                                <div class="mb-4 is-bold">
+                                    <label for="event-cities">Select City to Search for Events</label>
+                                </div>
+                                <form>
+                                    <div class="select is-multiple mb-3 mt-3 select-container">
+                                        <select id="event-cities" class="is-centered select-el" name="event-cities"
+                                            multiple>
+                                            <option value="Denver" class="event-city" id="event-denver"
+                                                data-selected="unselected">Denver
+                                            </option>
+                                            <option value="Aurora" class="event-city" id="event-aurora"
+                                                data-selected="unselected">Aurora
+                                            </option>
+                                            <option value="Boulder" class="event-city" id="event-boulder"
+                                                data-selected="unselected">Boulder
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="modal-link-container has-text-center mt-4">
+                                        <a id="event-modal-link" class="is-link modal-link">Learn more about Concert and Event
+                                            Venues</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <hr class="hr">
+                        <style>
+                            hr {
+                                border: 2px solid rgba(210, 116, 2, 0.759);
+                            }
+                        </style>
+                        </hr>
+
+
+                        <div class="btn-container mt-3">
+                            <div class="has-text-centered is-centered is-bold">
+                                <button id="submit-btn" class="button">See Breweries and Events</button>
+                            </div>
+                        </div>
+                        <div id="results-container" class="has-text-centered mt-3">
+                        </div>
+
+                        <div class="modal" id="brewery-modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <header class="modal-card-head">
+                                    <p class="modal-card-title">Explore Brewery Types</p>
+                                    <button class="delete" aria-label="close"></button>
+                                </header>
+                                <section class="modal-card-body">
+                                    <div class="content has-text-left">
+                                        <ul>
+                                            <li>Microbrewery: Most craft breweries fall under this category. For
+                                                instance, Samuel Adams is
+                                                still recognized as a microbrewery.</li>
+
+                                            <li>Nanobrewery: An exceptionally small brewery typically focused on local
+                                                distribution only.
+                                            </li>
+
+                                            <li>Regional Brewery: This refers to a branch or location of an expanded
+                                                brewery, such as Sierra
+                                                Nevada's facility in Asheville, NC.</li>
+
+                                            <li>Brewpub: A restaurant or bar primarily focused on serving beer, often
+                                                with an on-site
+                                                brewery.</li>
+
+                                            <li>Large Brewery: These are notably sizable breweries, often not open to
+                                                visitors. For example,
+                                                Miller-Coors. (Note: "deprecated" implies outdated or no longer
+                                                recommended)</li>
+
+                                            <li>Planning Brewery: Describes a brewery that is in the planning stages or
+                                                has not yet opened
+                                                to the public.</li>
+
+                                            <li>Bar: An establishment primarily serving drinks, without brewery
+                                                equipment on site. (Note:
+                                                "deprecated" implies outdated or no longer recommended)</li>
+
+                                            <li>Contract Brewery: A brewery that utilizes the equipment of another
+                                                brewery for production.
+                                            </li>
+
+                                            <li>Proprietor Brewery: Similar to contract brewing, but typically involves
+                                                a brewery incubator
+                                                model.</li>
+
+                                            <li>Closed Brewery: Refers to a location that has ceased operations.</li>
+
+                                        </ul>
+                                    </div>
+                                </section>
+                                <footer class="modal-card-foot">
+                                </footer>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+
+                        <div class="modal" id="event-modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <header class="modal-card-head">
+                                    <p class="modal-card-title">Venues to Know in the Denver Metro Area</p>
+                                    <button class="delete" aria-label="close"></button>
+                                </header>
+                                <section class="modal-card-body">
+                                    <div class="content has-text-left">
+                                        <p>Denver</p>
+                                        <ul>
+                                            <li>Filmore Auditorium: Renowned for its excellent acoustics and eclectic lineup of concerts, The Fillmore offers concertgoers a memorable and vibrant experience in the heart of Denver's music scene.</li>
+
+                                            <li>Mission Ballroom: a state-of-the-art concert venue known for its modern design and cutting-edge technology. It brings top artists and provides unforgettable concert experiences in the vibrant Denver music scene.</li>
+
+                                            <li>Ogden theatre: Its intimate atmosphere and stellar acoustics makes it a favorite among both local and touring artists, offering concertgoers an unforgettable live music experience in the heart of Denver.</li>
+                                        </ul>
+                                        <p>Aurora</p>
+                                        <ul>
+                                            <li>Stampede: With a spacious dance floor, live music acts, and regular special events, Stampede is a go-to destination for country music fans and those looking for a fun night out in the Aurora area.</li>
+
+                                            <li>Saddle up At Q: Saddle Up at Q provides patrons with a memorable night of fun, dancing, and socializing in a vibrant setting inspired by the spirit of the Old West.</li>
+                                        </ul>
+                                        <p>Boulder</p>
+                                        <ul>
+                                            <li>Boulder theatre: The theater hosts a diverse range of events, including concerts, comedy shows, film screenings, and community gatherings.</li>
+
+                                            <li>Fox theatre and cafe: With its intimate setting, excellent sound quality, and cozy cafe serving up tasty bites and drinks, the Fox Theatre offers patrons an unforgettable night of entertainment and community in the heart of Boulder's vibrant cultural scene.</li>
+                                        </ul>
+                                </section>
+                                <footer class="modal-card-foot">
+                                </footer>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(210, 116, 2, 0.759)),
+                url('assets/images/image1brewery.jpg');
+            /* background-image: url("assets/images/image1brewery.jpeg"); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-color: #cccccc; */
+
+        }
+
+        .rubik-maps-regular {
+            font-family: "Rubik Maps", system-ui;
+            font-weight: 10;
+            font-style: normal;
+        }
+
+        .button {
+            background-color: rgba(210, 116, 2, 0.759);
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+
+        }
+
+        .box {
+            opacity: .83;
+        }
+
+        .lato-bold {
+            font-family: "Lato", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* unvisited link */
+        a {
+            color: rgba(144, 80, 3, 0.759);
+        }
+
+
+        /* mouse over link */
+        a:hover {
+            color: black;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/group-project-1/assets/js/script.js"></script>
+</body>
+
+</html>
