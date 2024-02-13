@@ -1,16 +1,6 @@
 var submitBtn = document.getElementById("submit-btn");
 var resultsContainer = document.getElementById("results-container");
 
-var brewerySelectEl = document.getElementById("brewery-cities");
-var breweryArvada = document.getElementById("brewery-arvada");
-var breweryLakewood = document.getElementById("brewery-lakewood");
-var breweryDenver = document.getElementById("brewery-denver");
-
-var eventSelectEl = document.getElementById("event-cities");
-var eventDenver = document.getElementById("event-denver");
-var eventAurora = document.getElementById("event-aurora");
-var eventBoulder = document.getElementById("event-boulder");
-
 var breweryModalLink = document.getElementById("brewery-modal-link");
 var breweryModal = document.getElementById("brewery-modal");
 var closeBreweryModal = document.getElementsByClassName("modal-close")[0];
@@ -39,77 +29,32 @@ window.onclick = function(event) {
     }
 }
 
-// THE BELOW WAS AN ATTEMPT TO CREATE THE FUNCTIONALITY FOR OPENING AND CLOSING BOTH MODALS USING THE SAME CODE. IT DOESN'T WORK.
-// var modalOpenBtns = document.querySelectorAll(".modal-btn");
-// // console.log(modalOpenBtns);
-// var modals = document.querySelectorAll(".modal");
-// var closeModal = document.querySelectorAll(".modal-close");
+function getSelectedBreweryCity() {
+    var selectedBreweryCity = document.getElementById("brewery-cities").value;
+    console.log(selectedBreweryCity);
+    return selectedBreweryCity;
+}
 
-// modalOpenBtns.onclick = function() {
-//     modals.style.display = "block";
-// }
-// closeModal.onclick = function() {
-//     modals.style.display = "none";
-// }
-
-// window.onclick = function(event) {
-//     if (event.target.className == "modal-background" || event.target.className == "delete") {
-//         modals.style.display = "none";
-//     }
-// }
-
-brewerySelectEl.addEventListener("click", function(event) {
-    var breweryCity = event.target;
-    // When user clicks a brewery city, it will appear selected until they click on a different brewery city. If they want to select multiple brewery cities, due to the functionality of the html option element, they will have to control + click to add an additional city past the first one. Current bug would be that if user clicks on a different brewery city after their first brewery city, it will appear to the user that their first brewery city has been un-selected, but in our code, it would still have the data-selected attribute value of selected.
-    var isSelected = breweryCity.getAttribute("data-selected") == "selected";
-    if (isSelected) {
-        breweryCity.setAttribute("data-selected", "unselected");
-    } else {
-        breweryCity.setAttribute("data-selected", "selected");
-    }
-    // console.log(breweryCity);
-});
+function getSelectedEventCity() {
+    var selectedEventCity = document.getElementById("event-cities").value;
+    console.log(selectedEventCity);
+    return selectedEventCity;
+}
 
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    getBreweries();
-    getEvents();
+    resultsContainer.innerHTML = "";
+    var selectedBreweryCity = getSelectedBreweryCity();
+    console.log(selectedBreweryCity);
+    if (selectedBreweryCity !== "Select a City") {
+        getBrewery(selectedBreweryCity);
+    }
+    var selectedEventCity = getSelectedEventCity();
+    console.log(selectedEventCity);
+    if (selectedEventCity !== "Select a City") {
+        getEvent(selectedEventCity);
+    }
 });
-
-var selectedBreweryCities = [];
-console.log(selectedBreweryCities);
-
-function getBreweries() {
-    selectedBreweryCities = [];
-    console.log("function getBreweries was triggered!");
-    for (i = 0; i < 3; i++) {
-        var state = brewerySelectEl.children[i].getAttribute("data-selected");
-        if (state === "selected") {
-            if (!(selectedBreweryCities.includes(brewerySelectEl.children[i]))) {
-                selectedBreweryCities.push(brewerySelectEl.children[i]);
-            }
-        }
-    }
-    for (i = 0; i < selectedBreweryCities.length; i++) {
-        if (selectedBreweryCities[i] == breweryArvada) {
-            getBrewery("Arvada");
-            console.log('getBrewery("Arvada") was triggered');
-            // breweryArvada.setAttribute("data-selected", "unselected");
-        } else if (selectedBreweryCities[i] == breweryLakewood) {
-            getBrewery("Lakewood");
-            console.log('getBrewery("Lakewood") was triggered');
-            // breweryLakewood.setAttribute("data-selected", "unselected");
-        } else if (selectedBreweryCities[i] == breweryDenver) {
-            getBrewery("Denver");
-            console.log('getBrewery("Denver") was triggered');
-            // breweryDenver.setAttribute("data-selected", "unselected");
-        } else {
-            return;
-        }
-    }
-    console.log(selectedBreweryCities);
-}
-
 
 function getBrewery(city) {
     var requestURL = `https://api.openbrewerydb.org/v1/breweries?by_city=${city}`;
@@ -121,25 +66,9 @@ function getBrewery(city) {
             var breweryData = data;
             localStorage.setItem(`brewery${city}Stored`, JSON.stringify(breweryData));
             var retrievedBrewery = JSON.parse(localStorage.getItem(`brewery${city}Stored`));
-            // console.log(retrievedBrewery);
 
-            // if (!breweryResults) {
-                // var breweryResults = document.createElement("div");
-                // document.body.append(breweryResults);
-            // } else {
-            //     breweryResults.innerHTML = "";
-            // }
-            console.log(document.querySelectorAll('[data-selected="selected"]'));
-
-
-            if (selectedBreweryCities.length > 1) {
-                var breweryResults = document.createElement("div");
-                resultsContainer.append(breweryResults);
-            } else {
-                resultsContainer.innerHTML = "";
-                var breweryResults = document.createElement("div");
-                resultsContainer.append(breweryResults);
-            }
+            var breweryResults = document.createElement("div");
+            resultsContainer.append(breweryResults);
 
             // The below 3 lines create the table to display brewery results, add the class of "table" to the table, and append the table to the results container div. 
             var breweryTable = document.createElement("table");
@@ -147,7 +76,6 @@ function getBrewery(city) {
                 breweryTable.setAttribute("class", "table mt-6");
             }
             addClass();
-            // breweryTable.classList.add("table");
             breweryResults.append(breweryTable);
 
             // The below lines of code add a table head, a table row within the table head, and th elements within that table row to act as titles for each column of the table. 
@@ -217,50 +145,6 @@ function getBrewery(city) {
         });
 }
 
-
-eventSelectEl.addEventListener("click", function(event) {
-    var eventCity = event.target;
-    // When user clicks a brewery city, it will appear selected until they click on a different brewery city. If they want to select multiple brewery cities, due to the functionality of the html option element, they will have to control + click to add an additional city past the first one. Current bug would be that if user clicks on a different brewery city after their first brewery city, it will appear to the user that their first brewery city has been un-selected, but in our code, it would still have the data-selected attribute value of selected.
-    var isSelected = eventCity.getAttribute("data-selected") == "selected";
-    if (isSelected) {
-        eventCity.setAttribute("data-selected", "unselected");
-    } else {
-        eventCity.setAttribute("data-selected", "selected");
-    }
-});
-
-
-var selectedEventCities = [];
-function getEvents() {
-    for (i = 0; i < 3; i++) {
-        // console.log("function getEvents was triggered!");
-        var state = eventSelectEl.children[i].getAttribute("data-selected");
-        if (state === "selected") {
-            if (!(selectedEventCities.includes(eventSelectEl.children[i]))) {
-                selectedEventCities.push(eventSelectEl.children[i]);
-            }
-        }
-    }
-    for (i = 0; i < selectedEventCities.length; i++) {
-        if (selectedEventCities[i] == eventDenver) {
-            getEvent("Denver");
-            console.log('getEvent("Denver") was triggered')
-            // eventDenver.setAttribute("data-selected", "unselected");
-        } else if (selectedEventCities[i] == eventAurora) {
-            getEvent("Aurora");
-            console.log('getEvent("Aurora") was triggered')
-            // eventAurora.setAttribute("data-selected", "unselected");
-        } else if (selectedEventCities[i] == eventBoulder) {
-            getEvent("Boulder");
-            console.log('getEvent("Boulder") was triggered')
-            // eventBoulder.setAttribute("data-selected", "unselected");
-        } else {
-            return;
-        }
-    }
-    console.log(selectedEventCities);
-}
-
 function getEvent(city) {
     var requestURL = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&sort=date,asc&city=${city}&apikey=ZNzKLs0LgFjnzr7MbEoFJueWt1j24tfW`;
     fetch(requestURL)
@@ -271,23 +155,9 @@ function getEvent(city) {
             var eventData = data._embedded.events;
             localStorage.setItem(`event${city}Stored`, JSON.stringify(eventData));
             var retrievedEvent = JSON.parse(localStorage.getItem(`event${city}Stored`));
-            // console.log(retrievedEvent);
 
-            // if (!eventResults) {
-                // var eventResults = document.createElement("div");
-                // document.body.append(eventResults);
-            // } else {
-            //     eventResults.innerHTML = "";
-            // }
-
-            if (eventResults) {
-                eventResults.remove();
-                var eventResults = document.createElement("div");
-                resultsContainer.append(eventResults);
-            } else {
-                var eventResults = document.createElement("div");
-                resultsContainer.append(eventResults);
-            }
+            var eventResults = document.createElement("div");
+            resultsContainer.append(eventResults);
 
             // The below 3 lines create the table to display event results, add the class of "table" to the table, and append the table to the results container div. 
             var eventTable = document.createElement("table");
@@ -295,7 +165,6 @@ function getEvent(city) {
                 eventTable.setAttribute("class", "table mt-6");
             }
             addClass();
-            // eventTable.classList.add("table");
             eventResults.append(eventTable);
 
             // The below lines of code add a table head, a table row within the table head, and th elements within that table row to act as titles for each column of the table. 
@@ -334,7 +203,6 @@ function getEvent(city) {
                 var formattedDate = dayjs(unformattedDate).format("MMM D, YYYY");
                 var unformattedTime = new Date(unformattedDate);
                 var formattedTime = unformattedTime.toLocaleTimeString("en-us");
-                // STILL NEED TO VERIFY THE BELOW IS WORKING FOR EVENTS.
                 if (formattedDate == null) {
                     formattedDate = "[unavailable]";
                 }
@@ -370,6 +238,3 @@ function getEvent(city) {
             }
         });
 }
-
-
-

@@ -31,7 +31,7 @@
 
                     <div class="rubik-maps-regular">
                         <div class="header-container is-bold is-size-1 has-text-centered mt-3 mb-3">
-                            <header id="heading">Denver Metro Brewery and Concert-Hop!</header>
+                            <header id="heading">BreweryBuzz: Denver Metro Brews and Events</header>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
                         <div class="columns">
                             <div class="column is-half has-text-centered mb-3">
 
-                                <div class="mb-4">
+                                <div class="mb-4 is-size-3">
                                     <label for="brewery-cities">Search for Breweries</label>
                                 </div>
                                 <form>
@@ -71,7 +71,7 @@
 
                             <div class="column is-half has-text-centered mb-3">
 
-                                <div class="mb-4 is-bold">
+                                <div class="mb-4 is-bold is-size-3">
                                     <label for="event-cities">Search for Events</label>
                                 </div>
                                 <form>
@@ -82,11 +82,13 @@
                                             <option value="Aurora" class="event-city" id="event-aurora">Aurora</option>
                                             <option value="Boulder" class="event-city" id="event-boulder">Boulder</option>
                                         </select>
+
                                     </div>
 
+
                                     <div class="modal-link-container has-text-center mt-4">
-                                        <a id="event-modal-link" class="is-link modal-link">Learn more about Concert and Event
-                                            Venues</a>
+                                        <a id="event-modal-link" class="is-link modal-link">Learn more about Concert and
+                                            Event Venues</a>
                                     </div>
                                 </form>
                             </div>
@@ -101,11 +103,12 @@
                         </hr>
 
 
-                        <div class="btn-container mt-3">
-                            <div class="has-text-centered is-centered is-bold">
+                        <div class="btn-container">
+                            <div class="is-bold">
                                 <button id="submit-btn" class="button">See Breweries and Events</button>
                             </div>
                         </div>
+
                         <div id="results-container" class="has-text-centered mt-3">
                         </div>
 
@@ -117,7 +120,7 @@
                                     <button class="delete" aria-label="close"></button>
                                 </header>
                                 <section class="modal-card-body">
-                                    <div class="content has-text-left">
+                                    <div class="content has-text-left is-size-6">
                                         <ul>
                                             <li>Microbrewery: Most craft breweries fall under this category. For
                                                 instance, Samuel Adams is
@@ -167,6 +170,7 @@
                             <button class="modal-close is-large" aria-label="close"></button>
                         </div>
 
+
                         <div class="modal" id="event-modal">
                             <div class="modal-background"></div>
                             <div class="modal-card">
@@ -175,7 +179,7 @@
                                     <button class="delete" aria-label="close"></button>
                                 </header>
                                 <section class="modal-card-body">
-                                    <div class="content has-text-left">
+                                    <div class="content has-text-left is-size-6">
                                         <p>Denver</p>
                                         <ul>
                                             <li>Filmore Auditorium: Renowned for its excellent acoustics and eclectic lineup of concerts, The Fillmore offers concertgoers a memorable and vibrant experience in the heart of Denver's music scene.</li>
@@ -208,7 +212,7 @@
             </div>
         </div>
     </section>
-    
+
 
     <style>
         body {
@@ -218,7 +222,14 @@
             background-size: cover;
             background-repeat: no-repeat;
             /* background-color: #cccccc; */
+            animation: fadeInAnimation ease 2s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
 
+        }
+
+        header {
+            color: rgba(210, 116, 2, 0.759);
         }
 
         .rubik-maps-regular {
@@ -229,19 +240,31 @@
 
         .button {
             background-color: rgba(210, 116, 2, 0.759);
-            /* Green */
             border: none;
             color: white;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             font-size: 16px;
-
+            font-weight: bold;
+            width: 100%;
+            margin: 4px 2px;
+            opacity: 0.9;
+            transition: 0.3s;
         }
+
+
+        button:hover {
+            opacity: 5;
+        }
+        
 
         .box {
             opacity: .83;
+            animation: 0.5s ease-out 0s 1 slideInFromTop;
+            background: #333;
+            padding: 30px;
+            border-radius: 25px;
         }
 
         .lato-bold {
@@ -259,6 +282,16 @@
         /* mouse over link */
         a:hover {
             color: black;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 50;
+            }
         }
     </style>
 
