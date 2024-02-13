@@ -1,6 +1,4 @@
-# group-project-1
-
-Denver Metro Brewery and Concert-Hop!
+# BreweryBuzz: Denver Metro Brews and Events
 
 Welcome to Metro Brewery and Concert-Hop, your ultimate companion for exploring breweries and events near you.
 
@@ -20,7 +18,6 @@ Features:
 -Custom History: Keeps your search history listed so you can see your previous searches.
 -Accurate Information: We work with grabbing the latest information from two great API's so we take care of the hard part!
 
-
 Getting Started: 
 
 1. Access:
@@ -30,15 +27,24 @@ Start discovering breweries and events in your area by browsing through the site
 3. Enjoy:
 Attend events, sample new brews, and connect with fellow beer lovers at breweries and events near you!
 
-
 Acknowledgements and Credits:
 
 Special thanks to Sara, Rebeca and Austin for making this app possible!
 Another thanks to all the breweries and event organizers who make the craft beer community thrive.
 
+1BestCsharp blog. (2017). How To Get Selected Option Value From Drop Down List Using JavaScript [ with source code ] [Video]. In YouTube. https://www.youtube.com/watch?v=kzFJ7St_ma8 (Referenced for a simpler way to identify user-selected options without using data-* attributes.)
+
+Stack Overflow. (2022, May 31). Best way to convert military time to standard time in javascript. Stack Overflow; Stack Exchange Inc. https://stackoverflow.com/questions/29206453/best-way-to-convert-military-time-to-standard-time-in-javascript (Referenced Melaz'z Apr 27, 2022 answer about using toLocaleTimeString() for converting times.)
+
+Stack Overflow. (2023b, December 4). How do I make a placeholder for a “select” box? Stack Overflow; Stack Exchange Inc. https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box?page=2&#38;tab=scoredesc (Referenced Thusitha Wickramasinghe's Dec 15, 2016 answer.)
+
+Stack Overflow. (2023, November 27). How to use a return value in another function in Javascript? Stack Overflow; Stack Exchange Inc. https://stackoverflow.com/questions/19674992/how-to-use-a-return-value-in-another-function-in-javascript (Referenced Hanky Panky's Oct 30, 2013 answer.)
+
+Travis Media. (2018). JavaScript for bulma - Modals [Video]. In YouTube. https://www.youtube.com/watch?v=h11FMQ2lPGI
+
 License: 
 
-This project is licensed under the MIT License - see “LICENSE.md” file for details. 
+This project is licensed under the This project is licensed under the [MIT license](https://opensource.org/license/mit/) see “LICENSE.md” file for details. 
 
 
 
