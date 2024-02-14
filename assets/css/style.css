@@ -1,45 +1,117 @@
+/* Adds a background image of friends at a brewery, with a linear gradient. Sets the fadeInAnimation for when the user navigates to the page. */
+body {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(210, 116, 2, 0.759)),
+        url('/group-project-1/assets/images/image1brewery.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/* Defines the opacity values for the fadeInAnimation. */
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 50;
+    }
+}
+
+.box {
+    opacity: .83;
+    animation: 0.5s ease-out 0s 1 slideInFromTop;
+    background: #333;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+header {
+    color: rgba(210, 116, 2, 0.759);
+}
+
+.rubik-maps-regular {
+    font-family: "Rubik Maps", system-ui;
+    font-weight: 10;
+    font-style: normal;
+}
+
+.lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+hr {
+    border: 2px solid rgba(210, 116, 2, 0.759);
+}
+
+/* Helps to control the width of the select elements. */
 .select-container {
     width: 20vw;
     min-width: 170px;
 }
 
-/* I added this styling to the select elements so that they're the same width and don't get too narrow when the viewport width is smaller. We can mess with the width values. */
+/* Helps to control the width and text alignment of the select elements. */
 .select-el {
     width: 100%;
     text-align: center;
     min-width: 120px;
 }
 
-/* Helps with the positioning of the modals so they're not too high or low. */
-.modal-card {
-    top: 2.5%
+/* Styling for unvisited links. */
+a {
+    color: rgba(144, 80, 3, 0.759);
+}
+
+/* Styling for links while the cursor is hovering over the link. */
+a:hover {
+    color: black;
+}
+
+/* Controls the vertical positioning of the brewery modal. */
+#brewery-modal-card {
+    top: 11%;
+}
+
+/* Controls the vertical positioning of the event modal. */
+#event-modal-card {
+    top: 3%;
+}
+
+.button {
+    background-color: rgba(210, 116, 2, 0.759);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin: 4px 2px;
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 5;
+}
+
+.table-title {
+    padding: 0;
+    margin-bottom: -30px;
 }
 
 table {
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; */
-    width: 100%;
     text-align: left;
     overflow: visible;
-    /* table-layout: fixed; */
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 5%;
 }
 
-/* The below works, in combination with the above table styling, but the widths of the columns are awkward and the websites overflow the table. */
-/* th, td {
-    min-width: 200px;
-    max-width: 200px;
-} */
 
-.table-sm {
-    width: 200px;
-}
-
-.table-md {
-    width: 200px;
-}
-
-.table-lg {
-    width: 200px;
-}
 
