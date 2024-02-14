@@ -20,12 +20,9 @@ No installation is required to use this application.
 
 Getting Started: 
 
-1. Access:
-Simply direct yourself to: [https://sara-hines.github.io/group-project-1](https://sara-hines.github.io/group-project-1).
-2. Explore: 
-Start discovering breweries and music events in your area by browsing through the site.
-3. Enjoy:
-Attend events, sample new brews, and connect with fellow beer and music lovers at breweries and concerts near you!
+1. Access: Simply direct yourself to: [https://sara-hines.github.io/group-project-1](https://sara-hines.github.io/group-project-1).
+2. Explore: Start discovering breweries and music events in your area by browsing through the site.
+3. Enjoy: Attend events, sample new brews, and connect with fellow beer and music lovers at breweries and concerts near you!
 
 ## Features 
 
