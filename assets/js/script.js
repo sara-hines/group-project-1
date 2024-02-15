@@ -33,14 +33,12 @@ window.onclick = function(event) {
 // When the user selects a city to search for breweries (when the brewery select element's onchange attribute fires), the below getSelectedBreweryCity function is called. The function returns the value of the select element (the city the user chose) as the variable selectedBreweryCity. 
 function getSelectedBreweryCity() {
     var selectedBreweryCity = document.getElementById("brewery-cities").value;
-    console.log(selectedBreweryCity);
     return selectedBreweryCity;
 }
 
 // When the user selects a city to search for events (when the event select element's onchange attribute fires), the below getSelectedEventCity function is called. The function returns the value of the select element (the city the user chose) as the variable selectedEventCity. 
 function getSelectedEventCity() {
     var selectedEventCity = document.getElementById("event-cities").value;
-    console.log(selectedEventCity);
     return selectedEventCity;
 }
 
@@ -49,12 +47,10 @@ submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
     resultsContainer.innerHTML = "";
     var selectedBreweryCity = getSelectedBreweryCity();
-    console.log(selectedBreweryCity);
     if (selectedBreweryCity !== "Select a City") {
         getBrewery(selectedBreweryCity);
     }
     var selectedEventCity = getSelectedEventCity();
-    console.log(selectedEventCity);
     if (selectedEventCity !== "Select a City") {
         getEvent(selectedEventCity);
     }
@@ -166,14 +162,13 @@ function getBrewery(city) {
             }
             // An event listener is set on each unfavorited star for the breweries table which switches the unfavorited star to the favorited star on click, and toggles between the favorited star and unfavorited star each time the user clicks on the star.
             const breweryStars = document.querySelectorAll(".brewery-star");
-            console.log(breweryStars);
             breweryStars.forEach(img => {
                 img.addEventListener("click", (event) => {
-                    if (img.src === "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png") {
-                    img.src = "/group-project-1/assets/images/favorited-star.png";
-                    } else if (img.src === "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
-                    img.src = "/group-project-1/assets/images/unfavorited-star.png";
-                    }
+                    if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png") {
+                        img.src = "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png";
+                        } else if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
+                        img.src = "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png";
+                        }
                 })
             });
         });
@@ -188,7 +183,6 @@ function getEvent(city) {
         })
         .then(function (data) {
             var eventData = data._embedded.events;
-            console.log(eventData);
             localStorage.setItem(`event${city}Stored`, JSON.stringify(eventData));
             var retrievedEvent = JSON.parse(localStorage.getItem(`event${city}Stored`));
 
@@ -292,13 +286,12 @@ function getEvent(city) {
             }
             // An event listener is set on each unfavorited star for the events table which switches the unfavorited star to the favorited star on click, and toggles between the favorited star and unfavorited star each time the user clicks on the star.
             const eventStars = document.querySelectorAll(".event-star");
-            console.log(eventStars);
             eventStars.forEach(img => {
                 img.addEventListener("click", (event) => {
-                    if (img.src === "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png") {
-                    img.src = "/group-project-1/assets/images/favorited-star.png";
-                    } else if (img.src === "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
-                    img.src = "/group-project-1/assets/images/unfavorited-star.png";
+                    if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png") {
+                    img.src = "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png";
+                    } else if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
+                    img.src = "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png";
                     }
                 })
             });
