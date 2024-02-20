@@ -143,6 +143,7 @@ function getBrewery(city) {
                 var breweryStar = document.createElement("img");
                 breweryStar.classList.add("brewery-star");
                 breweryStar.src = "/group-project-1/assets/images/unfavorited-star.png";
+                breweryStar.setAttribute("alt", "Star to display favorited status");
                 breweryStar.setAttribute("width", "15px");
                 breweryStar.setAttribute("height", "15px");
                 favBrewIconTd.append(breweryStar);
@@ -157,8 +158,15 @@ function getBrewery(city) {
                 breweryAddressTd.textContent = retrievedBrewery[i].address_1;
                 breweryTr.append(breweryAddressTd);
                 var breweryWebsiteTd = document.createElement("td");
-                breweryWebsiteTd.textContent = retrievedBrewery[i].website_url;
                 breweryTr.append(breweryWebsiteTd);
+                if (retrievedBrewery[i].website_url == "[unavailable]") {
+                    breweryWebsiteTd.textContent = "[unavailable]";
+                } else {
+                    var breweryWebsiteLink = document.createElement("a");
+                    breweryWebsiteLink.textContent = retrievedBrewery[i].website_url;
+                    breweryWebsiteLink.setAttribute("href", retrievedBrewery[i].website_url);
+                    breweryWebsiteTd.append(breweryWebsiteLink);
+                }
             }
             // An event listener is set on each unfavorited star for the breweries table which switches the unfavorited star to the favorited star on click, and toggles between the favorited star and unfavorited star each time the user clicks on the star.
             const breweryStars = document.querySelectorAll(".brewery-star");
@@ -256,15 +264,20 @@ function getEvent(city) {
                 var formattedDate = dayjs(unformattedDate).format("MMM D, YYYY");
                 var unformattedTime = new Date(unformattedDate);
                 var formattedTime = unformattedTime.toLocaleTimeString("en-us");
+                var eventWebsite = retrievedEvent[i].url;
+                if (venue == null) {
+                    venue = "[unavailable]";
+                }
                 if (formattedDate == null) {
                     formattedDate = "[unavailable]";
                 }
                 if (formattedTime == null) {
                     formattedTime = "[unavailable]";
                 }
-                if (venue == null) {
-                    venue = "[unavailable]";
+                if (eventWebsite == null) {
+                    eventWebsite = "[unavailable]";
                 }
+                // if (retrievedEvent)
                 // One table row will be created for each retrieved event, and table data elements will be created and appended to the table row in order to display: the unfavorited star (which becomes the favorited star on click); the event name; event date & time; venue; and website. Each table row created will be appended to the table body.
                 var eventTr = document.createElement("tr");
                 eventBody.append(eventTr);
@@ -272,6 +285,7 @@ function getEvent(city) {
                 var eventStar = document.createElement("img");
                 eventStar.classList.add("event-star");
                 eventStar.src = "/group-project-1/assets/images/unfavorited-star.png";
+                eventStar.setAttribute("alt", "Star to display favorited status");
                 eventStar.setAttribute("width", "15px");
                 eventStar.setAttribute("height", "15px");
                 favEventIconTd.append(eventStar);
@@ -286,18 +300,30 @@ function getEvent(city) {
                 eventWhenTd.textContent = formattedDate + " at " + formattedTime
                 eventTr.append(eventWhenTd);
                 var eventWebsiteTd = document.createElement("td");
-                eventWebsiteTd.textContent = retrievedEvent[i].url;
                 eventTr.append(eventWebsiteTd);
+                if (eventWebsite == "[unavailable]") {
+                    eventWebsiteTd.textContent = "[unavailable]";
+                } else {
+                    var eventWebsiteLink = document.createElement("a");
+                    eventWebsiteLink.textContent = retrievedEvent[i].url; 
+                    eventWebsiteLink.setAttribute("href", retrievedEvent[i].url);
+                    eventWebsiteTd.append(eventWebsiteLink);
+                }
             }
             // An event listener is set on each unfavorited star for the events table which switches the unfavorited star to the favorited star on click, and toggles between the favorited star and unfavorited star each time the user clicks on the star.
             const eventStars = document.querySelectorAll(".event-star");
             eventStars.forEach(img => {
                 img.addEventListener("click", (event) => {
                     if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png") {
-                    img.src = "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png";
-                    } else if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
-                    img.src = "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png";
-                    }
+                        img.src = "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png";
+                        } else if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
+                        img.src = "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png";
+                        }
+                    if (img.src == "https://sara-hines.github.io/group-project-1/assets/images/unfavorited-star.png") {
+                        img.src = "https://sara-hines.github.io/group-project-1/assets/images/favorited-star.png";
+                        } else if (img.src == "https://sara-hines.github.io/group-project-1/assets/images/favorited-star.png") {
+                        img.src = "https://sara-hines.github.io/group-project-1/assets/images/unfavorited-star.png";
+                        }
                 })
             });
         });
