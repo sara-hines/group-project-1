@@ -169,6 +169,11 @@ function getBrewery(city) {
                         } else if (img.src == "http://127.0.0.1:5500/group-project-1/assets/images/favorited-star.png") {
                         img.src = "http://127.0.0.1:5500/group-project-1/assets/images/unfavorited-star.png";
                         }
+                    if (img.src == "https://sara-hines.github.io/group-project-1/assets/images/unfavorited-star.png") {
+                        img.src = "https://sara-hines.github.io/group-project-1/assets/images/favorited-star.png";
+                        } else if (img.src == "https://sara-hines.github.io/group-project-1/assets/images/favorited-star.png") {
+                        img.src = "https://sara-hines.github.io/group-project-1/assets/images/unfavorited-star.png";
+                        }
                 })
             });
         });
